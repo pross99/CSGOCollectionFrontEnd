@@ -1,0 +1,32 @@
+
+.il {
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-top: 0.5rem;
+	background-color: gray;
+	width: 90%;
+	border-radius: 20px;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    
+}
+
+.il-container{
+    width: 800px;
+    height: 800px;
+    background-color: blue;
+    border-radius: 20px;
+}
+
+.il-spinner {
+	display: flex;
+    flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    height: 100%;
+}

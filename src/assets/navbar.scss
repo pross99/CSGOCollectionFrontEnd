@@ -1,0 +1,48 @@
+
+
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:clamp(50px,15vh,80px);
+    background-color: $primary-color;
+
+    .main{
+        display: flex;
+        flex: 1;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        align-items: center;
+    }
+}
+
+.nav-img{
+    background-image: url("https://cdn.fastly.steamstatic.com/apps/csgo/images/csgo_react/global/logo_cs_sm.svg");
+    width: 90px;
+  min-width: 80px;
+  height: 60px;
+  min-height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: .8;
+  margin: 10px 30px;
+}
+
+.right{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.right-container{
+    display: flex;
+    justify-content: center;
+    flex-basis: 30%;
+    align-items: center;
+    height: 70%;
+    background-color: white;
+    border-radius: 20px;
+
+}
