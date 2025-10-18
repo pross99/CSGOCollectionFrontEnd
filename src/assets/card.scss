@@ -1,0 +1,11 @@
+.item-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    
+    img{
+        height: 80px;
+    }
+}

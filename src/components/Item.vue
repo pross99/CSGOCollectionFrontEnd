@@ -8,18 +8,17 @@ const store = useStore()
 const emit = defineEmits(['update'])
 const showModal = ref(false)
 const showToast = useToast()
+
+
 const props = defineProps({
-    collections: {
-        type: Array,
-        required: true
-    }
+    collection: Object
 });
 
 
 //iterate each object
-console.log("HI", props.collections)
+console.log("HI", props.collection)
 const sortedCollections = computed(() => {
-  return [...props.collections].sort((a, b) => a.estimatedPrice - b.estimatedPrice)
+  return [...props.collection].sort((a, b) => a.estimatedPrice - b.estimatedPrice)
 })
 
 
@@ -59,32 +58,25 @@ const handleFormSubmit = async ( formData ) => {
 </script>
 
 
-<template>
-    <table>
-        <thead>
-            <tr>
-          <th>Item ID</th>
-          <th>Wear</th>
-          <th>Float</th>
-          <th>StatTrak</th>
-          <th>Rarity</th>
-          <th>Estimated Price ($)</th>
-            </tr>
-        </thead>
+<template>  
 
-        <tbody>
-            <tr v-for="item in sortedCollections" :key="item._id">
-            <td>{{ item.itemId }}</td>
-          <td>{{ item.wear }}</td>
-          <td>{{ item.float.toExponential(2) }}</td>
-          <td>{{ item.statTrack ? 'Yes' : 'No' }}</td>
-          <td>{{ item.rarity }}</td>
-          <td>{{ item.estimatedPrice.toFixed(2) }}</td>
-          </tr>
 
-          <tr v-if="sortedCollections.length === 0">
-          <td colspan="6" class="empty">No items found</td>
-        </tr>
-        </tbody>
-    </table>
+            <div class="item-card">
+                 <img :src="collection.image" />
+             <p>{{ collection.itemId }}</p>
+            <p>{{ collection.wear }}</p>
+            <p>{{ collection.float }}</p>
+            <p>{{ collection.statTrack ? 'Yes' : 'No' }}</p>
+            <p>{{ collection.rarity }}</p>
+            <p>{{ collection.estimatedPrice }}</p>
+            <p>{{ collection.itemName }}</p>
+           
+            </div>
+        
+     
+
+          
 </template>
+
+<style lang="scss" src="../assets/card.scss">
+</style>

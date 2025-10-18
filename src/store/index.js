@@ -5,7 +5,9 @@ export default createStore({
     state: {
         items: [],
         collections: [],
-        isLoading: true
+        isLoading: true,
+        searchLoading: false,
+        searchResults: []
     },
     mutations: {
         SET_COLLECTIONS(state, collections) {
@@ -26,6 +28,14 @@ export default createStore({
 
         SET_LOADING(state, loading) {
             state.isLoading = loading
+        },
+
+        SET_SEARCHRESULTS(state, searchResults) {
+            state.searchResults = searchResults
+        },
+
+        SET_SEARCH_LOADING(state, loading) {
+            state.searchLoading = loading
         }
     },
 
@@ -39,13 +49,29 @@ export default createStore({
             try {
                 const collectionResponse = await axios.get(`https://csgocollectionbackend.onrender.com/api/collection`)
                 const itemResponse = await axios.get(`https://csgocollectionbackend.onrender.com/api/item`)
-                console.log(collectionResponse)
+                console.log("items", itemResponse)
                 commit('SET_COLLECTIONS', collectionResponse.data)
                 commit('SET_ITEMS', itemResponse.data)
             } catch(error) {
                 console.error('err', error)
             } finally {
                 commit('SET_LOADING', false)
+            }
+        },
+
+
+        async searchItem({commit}, query) {
+
+             commit('SET_SEARCH_LOADING', true);
+            try{
+                const searchResponse = await axios.get(`https://csgocollectionbackend.onrender.com/api/item/search?q=${query}`)
+
+                console.log("sResults", searchResponse)
+                commit('SET_SEARCHRESULTS', searchResponse)
+            } catch(error) {
+                console.error('err')
+            } finally {
+                commit('SET_SEARCH_LOADING', false)
             }
         },
 
@@ -90,11 +116,32 @@ export default createStore({
         },
 
         items(state) {
-            return state.items
+            return state.items.map(item => {
+                return item
+            })
+        },
+
+        searchResults(state) {
+            return state.searchResults
         },
 
         isLoading(state) {
             return state.isLoading
-        }
+        },
+
+        collectionWithImagefromItem(state) {
+            return state.collections.map(col => {
+                const item = state.items.find(i => String(i.id) === String(col.itemId)) ?? {};
+                return {...col, itemName: item.name ?? 'Unknown', image: item.image ?? null}
+            })
+        },
+        collectionByBool: (state, getters) => (key, value = true) => {
+         return getters.collectionWithImagefromItem.filter(col => col[key] === value);
     }
+    },
+
+    
+
+
+        
 })

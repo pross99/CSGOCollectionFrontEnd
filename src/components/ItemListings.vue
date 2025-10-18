@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useToast } from 'vue-toastification';
 import { useStore } from 'vuex';
 import Item from './Item.vue';
+import Search from './Search.vue';
 
 const store = useStore()
 
@@ -20,15 +21,30 @@ const showModal = ref(false)
 const emit = defineEmits(['add']);
 
 const collections = computed(() => store.getters.collections);
+const collectionsWithImages = computed(() => store.getters.collectionWithImagefromItem)
 const items = computed(() => store.getters.items);
 const isLoading = computed(() => store.getters.isLoading);
 const updateCollection = (id, newData)  => {
     store.commit('UPDATE_COLLECTION', { id,newData})
 };
+console.log(collectionsWithImages)
+
+
+const peterCollection = computed(() => 
+store.getters.collectionByBool('userName', true)
+);
+
+const vinneCollection = computed(() => 
+store.getters.collectionByBool('userName', false))
 </script>
 
 <template>
     <section class="il">
+        
+
+        <div class="il-search-container">
+            <Search />
+        </div>
         <div class="il-container">
 
             <div v-if="isLoading" class="il-spinner">
@@ -37,7 +53,7 @@ const updateCollection = (id, newData)  => {
             </div>
 
             <div v-else class="il-items">
-                <Item  :collections="collections"/>
+                <Item v-for="col in peterCollection"  :key="col.id" :collection="col" @update="updateCollection"/>
             </div>
         </div>
 
@@ -50,7 +66,7 @@ const updateCollection = (id, newData)  => {
             </div>
 
             <div v-else class="il-items">
-                <Item  :collections="collections"/>
+                <Item  v-for="col in vinneCollection"  :key="col.id" :collection="col" @update="updateCollection"/>
             </div>
         </div>
         
