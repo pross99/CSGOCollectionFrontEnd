@@ -77,13 +77,16 @@ export default createStore({
 
         async addCollection({commit}, formData) {
             const newCollection = {
+                userName: formData.userName,
                  itemId: formData.itemId,
-                    wear: formData.wear,
+                wear: formData.wear,
                  float: formData.float,
-                 userName: formData.userName,
                 statTrack: formData.statTrack,
-                  estimatedPrice: formData.estimatedPrice
+                  estimatedPrice: formData.estimatedPrice,
+                  rarity: formData.rarity
             };
+
+            console.log(newCollection)
             const response = await axios.post(`https://csgocollectionbackend.onrender.com/api/collection`, newCollection)
             commit('ADD_COLLECTION', response.data)
             return response.data;

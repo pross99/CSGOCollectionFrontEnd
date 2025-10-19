@@ -43,7 +43,7 @@ store.getters.collectionByBool('userName', false))
         
 
         <div class="il-search-container">
-            <Search />
+            <Search/>
         </div>
         <div class="il-container">
 

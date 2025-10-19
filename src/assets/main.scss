@@ -21,6 +21,8 @@
     height: 800px;
     background-color: blue;
     border-radius: 20px;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .il-spinner {
@@ -33,6 +35,11 @@
 
 .il-items{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
+}
+
+.il-search-container{
+    position: absolute;
+    top: 80px;
 }
