@@ -44,15 +44,13 @@ onBeforeUnmount(() => {
 
 
 function sendItemToForm(item) {
-
-  console.log(item)
   showModal.value = true
   selectedItem.value = item
   itemRework.rarity = item.rarity.name
   itemRework.name = item.name
   itemRework.image = item.image
   itemRework.itemId = item.id
-  console.log("THE ITEM SENT", itemRework)
+
 }
 
 const handleFormSubmit = async(formData) => {
@@ -77,7 +75,16 @@ const close = () => {
 
 <template>
 
-   <div class="search-container">
+   <div class="card">
+    <div class="card-inner">
+   <label class="search-label">Add a new item to your collection</label>
+   <div class="container">
+
+   <div class="icon">
+    <fa icon="search" />
+   </div>
+
+   <div class="input-container">
     <input
       v-model="searchQuery"
       @input="handleSearch"
@@ -88,12 +95,15 @@ const close = () => {
     <div v-if="loading" class="loading">Searching...</div>
     <div v-if="searchResults.length > 0" class="results">
       <div 
-        v-for="(item, index) in searchResults" 
+        v-for="(item, index) in searchResults.slice(0,10)" 
         :key="index"
         class="result-item"
         @click="sendItemToForm(item)"
+        
       >
+      
        {{ item.name }}
+       <img :src="item.image" class="item-image" />
       </div>
       <Modal 
       :isOpen="showModal" 
@@ -102,6 +112,11 @@ const close = () => {
       :initialData="itemRework">
 
       </Modal>
+      </div>
+      </div>
+    </div>
     </div>
   </div>
 </template>
+
+<style lang="scss" src="../assets/search-button.scss"></style>

@@ -17,6 +17,7 @@
 }
 
 .il-container{
+  
     width: 800px;
     height: 800px;
     background-color: blue;
@@ -40,6 +41,8 @@
 }
 
 .il-search-container{
-    position: absolute;
-    top: 80px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }

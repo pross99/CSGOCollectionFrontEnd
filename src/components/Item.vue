@@ -3,6 +3,7 @@ import { defineProps, ref, computed, defineEmits } from 'vue';
 import axios from 'axios'
 import { useToast } from 'vue-toastification';
 import { useStore } from 'vuex'
+import Modal from './Modal.vue';
 
 const store = useStore()
 const emit = defineEmits(['update'])
@@ -24,16 +25,20 @@ const sortedCollections = computed(() => {
 
 
 
-
+const deleteCollection = async (collection) => {
+    console.log(collection)
+    store.dispatch('deleteCollection', collection.id)
+}
 
 const handleFormSubmit = async ( formData ) => {
-    if(!formData.id) {
+    if(!formData._id) {
         console.error("WHERE ID?")
         return;
     }
 
 
     const updateCollectionObject = {
+        id: props.collection._id,
         itemId: formData.itemId,
         wear: formData.wear,
         float: formData.float,
@@ -61,7 +66,9 @@ const handleFormSubmit = async ( formData ) => {
 <template>  
 
 
-            <div class="item-card">
+            <div class="item-card"
+            @click="showModal= true"
+            >
                  <img :src="collection.image" />
              <p>{{ collection.itemId }}</p>
             <p>{{ collection.wear }}</p>
@@ -72,8 +79,17 @@ const handleFormSubmit = async ( formData ) => {
             <p>{{ collection.itemName }}</p>
            
             </div>
+            <fa icon="trash-can"
+            @click="deleteCollection(collection.id)" 
+            />
         
-     
+     <Modal 
+   
+      :isOpen="showModal" 
+      @close="showModal = false" 
+      @submit="handleFormSubmit" 
+      :initialData="collection">
+     ></Modal>
 
           
 </template>

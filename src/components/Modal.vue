@@ -62,7 +62,7 @@ export default{
 <template>
     <div v-if="isOpen" class="m-overlay" @click.self="close">
         <div class="m-content">
-            <button class="m-close" @click="close"> X</button>
+            <button class="m-close" @click="close"> X </button>
             <slot></slot>
             <div class="m-container">
                 <div class="m-c-img">
@@ -75,12 +75,12 @@ export default{
                     <form @submit="checkForm" method="post" novalidate="true">
 
                         <p v-if="errors.length">
-                            <b>Please correct the following error(s):</b>
+                            <b> Please correct the following error(s): </b>
                         <ul>
                             <li v-for="error in errors"> {{ error }}</li>
                         </ul>
                         </p>
-                        <h2>{{ initialData.name }}</h2>
+                        <h2>{{ initialData.name }} </h2>
                         <input v-model="formData.Itemid" type="text">{{ initialData.itemId }}</input>
                         
                         <label>
@@ -137,11 +137,10 @@ export default{
 
 
 
-                        <button type="submit" class="form-btn-submit">Save Changes</button>
+                        <button type="submit" class="form-btn-submit"> Save Changes </button>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </template>

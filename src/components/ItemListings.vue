@@ -39,12 +39,13 @@ store.getters.collectionByBool('userName', false))
 </script>
 
 <template>
+    <div class="il-search-container">
+            <Search/>
+        </div>
     <section class="il">
         
 
-        <div class="il-search-container">
-            <Search/>
-        </div>
+        
         <div class="il-container">
 
             <div v-if="isLoading" class="il-spinner">

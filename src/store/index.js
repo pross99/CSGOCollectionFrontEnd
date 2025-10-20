@@ -22,6 +22,11 @@ export default createStore({
             if (index !== -1) Object.assign(state.collections[index], newData)
         },
 
+        DELETE_COLLECTION(state, {id}) {
+            const index = state.collectionsfindIndex(collection => collection._id === id)
+            if (index !== -1) Object.delete(state.collections[index])
+        },
+
          SET_ITEMS(state, items) {
             state.items = items
         },
@@ -103,6 +108,12 @@ export default createStore({
             }
             const response = await axios.put(`https://csgocollectionbackend.onrender.com/api/collection/${formData.id}`, updateCollectionObject)
             commit('UPDATE_COLLECTION', {id: formData.id, newData: response.data})
+            return response.data
+        },
+
+        async deleteCollection({commit}, {_id}) {
+            const deleteResponse = await axios.delete(`https://csgocollectionbackend.onrender.com/api/collection/${_id}`)
+            commit('DELETE_COLLECTION')
             return response.data
         },
 
