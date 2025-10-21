@@ -1,11 +1,46 @@
 .item-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: aliceblue;
-    
+   padding: 1px;
+   padding-bottom: 0;
+   box-sizing: border-box;
+  border-radius: $border-radius;
+  background: linear-gradient(-67deg, rgba($secondary-color, .7), $third-color);
+  box-shadow: 
+    -2px -2px 6px rgba(#fff, .6),
+    2px 2px 12px #c8d8e7;
+
     img{
         height: 80px;
     }
+
+  
+}
+
+.card-inner{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   
+}
+
+.card-icon {
+     margin-bottom: -2px;
+    margin-left: 45%;
+    background-color: white;
+    padding: 10px;
+   cursor: pointer;
+}
+
+.item-blue{
+     background: linear-gradient(-67deg, rgba(#4b69cd, .7), $third-color);
+}
+.item-purple{
+     background: linear-gradient(-67deg, rgba(#8847ff, .9), $third-color);
+}
+.item-pink{
+     background: linear-gradient(-67deg, rgba(#d32ce6, 1), $third-color);
+}
+.item-red{
+     background: linear-gradient(-67deg, rgba(#eb4b4b, 1), $third-color);
 }

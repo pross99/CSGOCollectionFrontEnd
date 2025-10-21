@@ -26,6 +26,7 @@ $border-radius: 10px;
     min-height: 46px;
     max-height: 46px;
   display: flex;
+  color: $primary-color;
   align-items: center;
   justify-content: center;
   border-radius: var($border-radius);

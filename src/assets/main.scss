@@ -4,10 +4,11 @@
 	padding-right: 0.5rem;
 	padding-bottom: 0.5rem;
 	padding-top: 0.5rem;
+    box-sizing: border-box;
 	background-color: gray;
 	width: 90%;
 	border-radius: 20px;
-    height: 100vh;
+    height: auto;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -17,20 +18,20 @@
 }
 
 .il-container{
-  
-    width: 800px;
-    height: 800px;
-    background-color: blue;
-    border-radius: 20px;
+   background: white;
+    width: 850px;
+    height: 1600px;
+    
+    border-radius: $border-radius;
     padding: 1rem;
-    box-sizing: border-box;
+    
 }
 
 .il-spinner {
 	display: flex;
     flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: start;
     height: 100%;
 }
 
@@ -45,4 +46,20 @@
     box-sizing: border-box;
     display: flex;
     justify-content: center;
+}
+
+.il-title{
+    border-radius: $border-radius;
+    
+  background: linear-gradient(-67deg, rgba($secondary-color, .2), rgba($third-color,.8));
+  box-shadow: 
+    -2px -2px 6px rgba(#fff, .6),
+    2px 2px 12px #c8d8e7;
+    color: #1a1a1a;;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+#vinne{
+     background: linear-gradient(-67deg, rgba($third-color, .2), rgba($secondary-color,.5));
+
 }

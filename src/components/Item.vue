@@ -23,13 +23,6 @@ const sortedCollections = computed(() => {
 })
 
 
-
-
-const deleteCollection = async (collection) => {
-    console.log(collection)
-    store.dispatch('deleteCollection', collection.id)
-}
-
 const handleFormSubmit = async ( formData ) => {
     if(!formData._id) {
         console.error("WHERE ID?")
@@ -56,7 +49,28 @@ const handleFormSubmit = async ( formData ) => {
         console.log("ERROR",error)
         showToast.error("ERROR updating listing")
     }
-}
+    }
+
+    const handleDelete = async (collection) => {
+        if(!collection._id) {
+            console.log("WHERE IS ID")
+            return;
+        }
+
+        const idFromObject = {
+            id: props.collection._id
+        }
+
+        try {
+        const deletedCollection = await store.dispatch('deleteCollection', idFromObject)
+        showToast.success('Item deleted!')
+        emit('delete', idFromObject, deletedCollection)
+    } catch (error) {
+        console.log("ERROR",error)
+        showToast.error("ERROR updating listing")
+    }
+    }
+
 
 // ADD SPECIAL STYLING DEPENDING ON RARITY 
 
@@ -67,21 +81,35 @@ const handleFormSubmit = async ( formData ) => {
 
 
             <div class="item-card"
-            @click="showModal= true"
-            >
-                 <img :src="collection.image" />
-             <p>{{ collection.itemId }}</p>
-            <p>{{ collection.wear }}</p>
-            <p>{{ collection.float }}</p>
-            <p>{{ collection.statTrack ? 'Yes' : 'No' }}</p>
-            <p>{{ collection.rarity }}</p>
-            <p>{{ collection.estimatedPrice }}</p>
-            <p>{{ collection.itemName }}</p>
            
-            </div>
-            <fa icon="trash-can"
-            @click="deleteCollection(collection.id)" 
+            :class="collection.rarity === 'Mil-spec' 
+            ? 'item-blue'
+            :collection.rarity === 'Restricted'
+            ? 'item-purple'
+            :collection.rarity === 'Classified'
+            ? 'item-pink'
+            :collection.rarity === 'Covert' 
+            ? 'item-red' 
+            : errorClass"
+            >
+            <div class="card-inner"
+             @click="showModal= true">
+                 <img :src="collection.image" />
+             <p>{{ collection.itemName }}</p>
+            <p>{{ collection.wear }}</p>
+            <p>Float: {{ collection.float }}</p>
+            <p>StatTrack: {{ collection.statTrack ? 'Yes' : 'No' }}</p>
+            <p>{{ collection.rarity }}</p>
+            <p>{{ collection.estimatedPrice }}€</p>
+           
+            
+           </div>
+           <fa icon="trash-can"
+           class="card-icon"
+            @click="handleDelete(collection)" 
             />
+            </div>
+            
         
      <Modal 
    

@@ -16,20 +16,21 @@ onMounted(() => {
   }
 })
 
-const showModal = ref(false)
+
 
 const emit = defineEmits(['add']);
 
-const collections = computed(() => store.getters.collections);
 const collectionsWithImages = computed(() => store.getters.collectionWithImagefromItem)
-const items = computed(() => store.getters.items);
 const isLoading = computed(() => store.getters.isLoading);
+
 const updateCollection = (id, newData)  => {
     store.commit('UPDATE_COLLECTION', { id,newData})
 };
 console.log(collectionsWithImages)
 
-
+const deleteCollection = (id) => {
+    store.commit('DELETE_COLLECTION', {id})
+}
 const peterCollection = computed(() => 
 store.getters.collectionByBool('userName', true)
 );
@@ -45,29 +46,31 @@ store.getters.collectionByBool('userName', false))
     <section class="il">
         
 
-        
+       
         <div class="il-container">
-
+                <h2 class="il-title"> Pede</h2>
+           
             <div v-if="isLoading" class="il-spinner">
                 <h1> Server is cold starting...</h1>
                 <PulseLoader />
             </div>
 
             <div v-else class="il-items">
-                <Item v-for="col in peterCollection"  :key="col.id" :collection="col" @update="updateCollection"/>
+                <Item v-for="col in peterCollection"  :key="col.id" :collection="col" @update="updateCollection" @delete="deleteCollection"/>
             </div>
         </div>
 
 
         <div class="il-container">
 
+            <h2 class="il-title" id="vinne"> Vinne</h2>
             <div v-if="isLoading" class="il-spinner">
                 <h1> Server is cold starting...</h1>
                 <PulseLoader />
             </div>
 
             <div v-else class="il-items">
-                <Item  v-for="col in vinneCollection"  :key="col.id" :collection="col" @update="updateCollection"/>
+                <Item  v-for="col in vinneCollection"  :key="col.id" :collection="col" @update="updateCollection"  @delete="deleteCollection"/>
             </div>
         </div>
         
