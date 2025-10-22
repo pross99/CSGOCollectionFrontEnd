@@ -52,10 +52,12 @@ const statisticsVinne = computed(() => store.getters.collectionsStats(vinneColle
     <section class="il">
         
 
-       
+        
         <div class="il-container">
+            <div class="title-container">
                 <h2 class="il-title"> Pede</h2>
-           
+            </div>
+               
             <div v-if="isLoading" class="il-spinner">
                 <h1> Server is cold starting...</h1>
                 <PulseLoader />
@@ -64,7 +66,8 @@ const statisticsVinne = computed(() => store.getters.collectionsStats(vinneColle
             <div v-else class="il-items">
                 <Item v-for="col in peterCollection"  :key="col.id" :collection="col" @update="updateCollection" @delete="deleteCollection"/>
             </div>
-        </div>
+             </div>
+        
 
 
         <div class="il-container">
@@ -74,12 +77,11 @@ const statisticsVinne = computed(() => store.getters.collectionsStats(vinneColle
                 <h1> Server is cold starting...</h1>
                 <PulseLoader />
             </div>
-
             <div v-else class="il-items">
                 <Item  v-for="col in vinneCollection"  :key="col.id" :collection="col" @update="updateCollection"  @delete="deleteCollection"/>
             </div>
-        </div>
-        
+            </div>
+           
     </section>
 </template>
 

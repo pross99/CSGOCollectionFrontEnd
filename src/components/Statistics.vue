@@ -1,21 +1,15 @@
 <script setup>
 import { computed } from 'vue';
-
+import { useStore } from 'vuex'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+const store = useStore()
 const props = defineProps({
     collection: Object
 });
 
 
+const isLoading = computed(() => store.getters.isLoading);
 
-const headerNames = {
-    totalBlues: 'Blues',
-    totalPurples: 'Purples',
-    totalPinks: 'Pinks',
-    totalReds: 'Reds',
-    totalGoldens: 'GOLD',
-    totalValue: 'Estimated collection value',
-    totalStatTracks: 'StatTracks'
-}
 
 
 </script>
@@ -31,15 +25,18 @@ const headerNames = {
    <div class="input-container">
    
     <div>
-      <div class="results">
+          <div v-if="isLoading" class="il-spinner">
+                <PulseLoader />
+            </div>
+      <div v-else class="results">
 
         <p>Total Skins: {{ collection.total }}</p>
         <p>
-        Total Estimated Value: {{ collection.totalValue.toFixed(2) }}€</p>
-        <p> Blues: {{ collection.totalBlues }} </p>
-        <p> Purples: {{ collection.totalPurples }}</p>
-        <p> Pinks: {{ collection.totalPinks }} </p>
-        <p> Reds: {{ collection.totalReds }} </p>
+         Value: {{ collection.totalValue.toFixed(2) }}€</p>
+        <p> Blue: {{ collection.totalBlues }} </p>
+        <p> Purple: {{ collection.totalPurples }}</p>
+        <p> Pink: {{ collection.totalPinks }} </p>
+        <p> Red: {{ collection.totalReds }} </p>
        <img />
       </div>
 
@@ -53,11 +50,15 @@ const headerNames = {
 <style scoped>
 
 .card {
-    width: 66%;
+  width: 40vw;
 }
 .results{
     display: flex;
-    gap: 40px;
+    justify-content: center;
+    padding-left: 10px;
+    width: 100%;
+    gap: 30px;
+    text-align: center;
 }
 
 </style>

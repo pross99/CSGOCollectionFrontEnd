@@ -12,8 +12,6 @@ const emit = defineEmits(['add'])
 
 const searchResults = computed (() => store.state.searchResults?.data || []);
 const loading = computed(() => store.state.searchLoading)
-
-
 const showModal = ref(false)
 const selectedItem = ref(null)
 const itemRework = reactive({
@@ -29,8 +27,15 @@ const handleSearch = () => {
 
     // Don't search if query is empty
   if (!searchQuery.value.trim()) {
+
+    setTimeout(() => {
+        store.commit('CLEAR_SEARCH_RESULTS');
+    },300)
+  
     return;
   }
+
+  
   
   // Debounce search by 300ms
   debounceTimer.value = setTimeout(() => {
@@ -93,9 +98,9 @@ const close = () => {
       class="search-input"
     />
     <div v-if="loading" class="loading">Searching...</div>
-    <div v-if="searchResults.length > 0" class="results">
+    <div v-if="searchResults.length > 0" class="results" id="clearResults">
       <div 
-        v-for="(item, index) in searchResults.slice(0,10)" 
+        v-for="(item, index) in searchResults.slice(0,3)" 
         :key="index"
         class="result-item"
         @click="sendItemToForm(item)"
@@ -119,4 +124,7 @@ const close = () => {
   </div>
 </template>
 
-<style lang="scss" src="../assets/search-button.scss"></style>
+<style lang="scss" src="../assets/search-button.scss">
+
+
+</style>

@@ -41,7 +41,11 @@ export default createStore({
 
         SET_SEARCH_LOADING(state, loading) {
             state.searchLoading = loading
-        }
+        },
+
+        CLEAR_SEARCH_RESULTS(state) {
+            state.searchResults = {data: []}
+        },
     },
 
     actions: {
@@ -145,7 +149,7 @@ export default createStore({
         collectionWithImagefromItem(state) {
             return state.collections.map(col => {
                 const item = state.items.find(i => String(i.id) === String(col.itemId)) ?? {};
-                return {...col, itemName: item.name ?? 'Unknown', image: item.image ?? null}
+                return {...col, itemName: item.name ?? 'Unknown', image: item.image ?? null, case: item.crates[0].name}
             })
         },
         collectionByBool: (state, getters) => (key, value = true) => {
@@ -172,8 +176,8 @@ export default createStore({
 
         items.forEach(item => {
             
-            if(item.estimatedPrice !== undefined) {
-                stats.totalValue += Number(item.estimatedPrice) || 0
+            if(item.estimatedPrice) {
+                stats.totalValue += item.estimatedPrice
             }
 
             if(item.rarity === 'Mil-Spec Grade'){

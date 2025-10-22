@@ -94,6 +94,7 @@ const handleFormSubmit = async ( formData ) => {
             <div class="card-inner"
              @click="showModal= true">
                  <img :src="collection.image" />
+                  <p>{{ collection.case }}</p>
              <p>{{ collection.itemName }}</p>
             <p>{{ collection.wear }}</p>
             <p>Float: {{ collection.float }}</p>

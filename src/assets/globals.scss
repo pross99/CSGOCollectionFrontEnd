@@ -1,7 +1,9 @@
+ @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+ 
  $primary-color: #d9803e;
  $secondary-color: #df7c13;
  $third-color: #5d79ae;
- $font-stack: 'Stratum2', 'sans-serif';
+ $font-stack: 'Orbitron', 'sans-serif';
  $border-radius: 10px;
 
 html,
@@ -25,7 +27,8 @@ h4,
 h5,
 h6 {
   font-family: $font-stack;
-  font-size: clamp(0.8rem, 3.5vw, 2rem);
+  font-size: clamp(0.8rem, 3.0vw, 2rem);
+  font-weight: 700;
   color: $primary-color;
   text-align: center;
   margin-bottom: 25px;
@@ -35,7 +38,8 @@ p,
 a,
 td,
 pre {
-  font-size: clamp(0.8rem, 0.9vw, 1.8rem);
+  font-size: clamp(0.8rem, 0.5vw, 1.8rem);
+  font-weight: 400;
   font-family: $font-stack;
   color: $third-color;
   text-decoration: none;
