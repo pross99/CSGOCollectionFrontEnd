@@ -17,7 +17,6 @@ const props = defineProps({
 
 
 //iterate each object
-console.log("HI", props.collection)
 const sortedCollections = computed(() => {
   return [...props.collection].sort((a, b) => a.estimatedPrice - b.estimatedPrice)
 })
@@ -82,7 +81,7 @@ const handleFormSubmit = async ( formData ) => {
 
             <div class="item-card"
            
-            :class="collection.rarity === 'Mil-spec' 
+            :class="collection.rarity === 'Mil-Spec Grade' 
             ? 'item-blue'
             :collection.rarity === 'Restricted'
             ? 'item-purple'

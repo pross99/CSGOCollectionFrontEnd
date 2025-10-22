@@ -1,11 +1,19 @@
 
+.il-top-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
 .il {
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
+    margin-top: 40px;
 	padding-bottom: 0.5rem;
 	padding-top: 0.5rem;
     box-sizing: border-box;
-	background-color: gray;
+	background: linear-gradient(45deg, rgba(#6b7b8f, 1), $third-color);
 	width: 90%;
 	border-radius: 20px;
     height: auto;
@@ -13,13 +21,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
     
 }
 
 .il-container{
    background: white;
-    width: 850px;
+    width: 910px;
     height: 1600px;
     
     border-radius: $border-radius;
@@ -37,7 +45,7 @@
 
 .il-items{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
 }
 

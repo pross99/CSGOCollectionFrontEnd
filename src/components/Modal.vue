@@ -35,7 +35,6 @@ export default{
                 (this.formData.float || this.initialData.float) &&
                 (this.formData.rarity || this.initialData.rarity)
             ) {
-                console.log("HI");
                 this.$emit("submit", this.formData);
                 this.close();
             }
@@ -121,11 +120,11 @@ export default{
                         <label>
                             Skin Quality:
                             <select v-model="formData.rarity">
-                                <option label="MIL-SPEC" value="MIL-SPEC"></option>
+                                <option label="MIL-SPEC" value="Mil-Spec Grade"></option>
                                 <option label="RESTRICTED" value="Restricted"></option>
                                 <option label="CLASSIFIED" value="Classified"></option>
                                 <option label="COVERT" value="Covert"></option>
-                                <option label="EXTRAORDINARY" value="EXTRAORDINARY"></option>
+                                <option label="EXTRAORDINARY" value="Extraordinary"></option>
                             </select>
                         </label>
 

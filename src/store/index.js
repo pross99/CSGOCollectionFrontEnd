@@ -70,8 +70,6 @@ export default createStore({
              commit('SET_SEARCH_LOADING', true);
             try{
                 const searchResponse = await axios.get(`https://csgocollectionbackend.onrender.com/api/item/search?q=${query}`)
-
-                console.log("sResults", searchResponse)
                 commit('SET_SEARCHRESULTS', searchResponse)
             } catch(error) {
                 console.error('err')
@@ -152,11 +150,53 @@ export default createStore({
         },
         collectionByBool: (state, getters) => (key, value = true) => {
          return getters.collectionWithImagefromItem.filter(col => col[key] === value);
-    }
     },
+        collectionsStats: (state) => (collection) => {
 
-    
+              const items = Array.isArray(collection) ? collection : collection.value;
+              if (!items || items.length === 0) {
+                 return {
+                    total: 0,
+                        };
+                }
 
+        const stats = {
+            total: items.length,
+            totalValue: 0,
+            totalBlues: 0,
+            totalPurples: 0,
+            totalPinks: 0,
+            totalReds: 0,
+            totalStatTracks: 0,
+        }
 
-        
+        items.forEach(item => {
+            
+            if(item.estimatedPrice !== undefined) {
+                stats.totalValue += Number(item.estimatedPrice) || 0
+            }
+
+            if(item.rarity === 'Mil-Spec Grade'){
+                stats.totalBlues++
+            }
+
+             if(item.rarity === 'Restricted'){
+                stats.totalPurples++
+            }
+             if(item.rarity === 'Classified'){
+                stats.totalPinks++
+            }
+             if(item.rarity === 'Covert'){
+                stats.totalReds++
+            }
+             if(item.statTrack){
+                stats.totalStatTracks++
+            }
+        });
+        console.log("stats!", stats)
+        return stats
+    }
+
+ 
+    },        
 })

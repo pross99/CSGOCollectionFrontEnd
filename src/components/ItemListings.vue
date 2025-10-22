@@ -7,6 +7,7 @@ import { useToast } from 'vue-toastification';
 import { useStore } from 'vuex';
 import Item from './Item.vue';
 import Search from './Search.vue';
+import Statistics from './Statistics.vue';
 
 const store = useStore()
 
@@ -37,11 +38,16 @@ store.getters.collectionByBool('userName', true)
 
 const vinneCollection = computed(() => 
 store.getters.collectionByBool('userName', false))
+
+const statisticsPeter = computed(() => store.getters.collectionsStats(peterCollection))
+const statisticsVinne = computed(() => store.getters.collectionsStats(vinneCollection))
 </script>
 
 <template>
-    <div class="il-search-container">
+    <div class="il-top-container">
+            <Statistics :collection="statisticsPeter"/>
             <Search/>
+            <Statistics :collection="statisticsVinne"/>
         </div>
     <section class="il">
         
