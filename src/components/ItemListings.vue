@@ -45,9 +45,14 @@ const statisticsVinne = computed(() => store.getters.collectionsStats(vinneColle
 
 <template>
     <div class="il-top-container">
-            <Statistics :collection="statisticsPeter"/>
+        <div class="top-top">
             <Search/>
+        </div>
+        <div class="top-bottom">
+            <Statistics :collection="statisticsPeter"/>
+            
             <Statistics :collection="statisticsVinne"/>
+            </div>
         </div>
     <section class="il">
         

@@ -2,9 +2,17 @@
 .il-top-container {
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+.top-bottom{
+    display: flex;
+    justify-content: space-evenly;
+    width: 99vw;
+    gap: 20px;
 }
 
 
@@ -28,7 +36,7 @@
 
    background: white;
     width: 50%;
-    height: 1600px;
+    height: 6000px;
 
     border-radius: $border-radius;
     

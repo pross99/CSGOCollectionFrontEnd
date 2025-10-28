@@ -81,7 +81,7 @@ const close = () => {
 <template>
 
    <div class="card">
-    <div class="card-inner">
+    <div class="search-card-inner">
    <label class="search-label">Add a new item to your collection</label>
    <div class="container">
 

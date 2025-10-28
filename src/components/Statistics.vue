@@ -17,7 +17,7 @@ const isLoading = computed(() => store.getters.isLoading);
 <template>
 
      <div class="card">
-    <div class="card-inner">
+    <div class="search-card-inner">
    <label class="search-label">Overview</label>
    <div class="container">
 
@@ -37,6 +37,7 @@ const isLoading = computed(() => store.getters.isLoading);
         <p> Purple: {{ collection.totalPurples }}</p>
         <p> Pink: {{ collection.totalPinks }} </p>
         <p> Red: {{ collection.totalReds }} </p>
+        <p> StatTracks: {{ collection.totalStatTracks }}</p>
        <img />
       </div>
 
@@ -50,7 +51,7 @@ const isLoading = computed(() => store.getters.isLoading);
 <style scoped>
 
 .card {
-  width: 40vw;
+  width: 50vw;
 }
 .results{
     display: flex;
@@ -59,6 +60,10 @@ const isLoading = computed(() => store.getters.isLoading);
     width: 100%;
     gap: 30px;
     text-align: center;
+}
+
+p{
+  font-size: 1.3rem;
 }
 
 </style>

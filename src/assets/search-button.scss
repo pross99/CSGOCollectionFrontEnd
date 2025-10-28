@@ -11,7 +11,7 @@ $border-radius: 10px;
   width: 20vw;
 }
 
-.card-inner{
+.search-card-inner{
       padding: 16px 16px;
   background-color: #e2e9f4;
   border-radius: var($border-radius);
@@ -43,7 +43,7 @@ $border-radius: 10px;
 .search-label{
      display: block;
   margin-bottom: 12px;
-  background: linear-gradient(45deg, rgba(#6b7b8f, 1), #3c4b66);
+  background: linear-gradient(45deg, rgba($third-color, 0.8), $third-color);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

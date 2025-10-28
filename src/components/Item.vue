@@ -94,20 +94,26 @@ const handleFormSubmit = async ( formData ) => {
             <div class="card-inner"
              @click="showModal= true">
                  <img :src="collection.image" />
-                  <p>{{ collection.case }}</p>
-             <p>{{ collection.itemName }}</p>
+                 
+             <p id="item-name">
+                <span>{{ collection.statTrack ? 'StatTrack' : '' }}</span>
+                {{ collection.itemName }}</p>
+                 <p >{{ collection.case }}</p>
             <p>{{ collection.wear }}</p>
             <p>Float: {{ collection.float }}</p>
-            <p>StatTrack: {{ collection.statTrack ? 'Yes' : 'No' }}</p>
+            
             <p>{{ collection.rarity }}</p>
             <p>{{ collection.estimatedPrice }}€</p>
            
             
            </div>
+
+           <div class="card-delete">
            <fa icon="trash-can"
            class="card-icon"
             @click="handleDelete(collection)" 
             />
+            </div>
             </div>
             
         
