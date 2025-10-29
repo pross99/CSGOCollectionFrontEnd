@@ -43,6 +43,12 @@
     align-items: center;
     height: 70%;
     background-color: white;
-    border-radius: 20px;
+    background-color: #e3edf7;
+  padding: 16px 32px;
+  border: none;
+  color: #a9b8c9;
+  -webkit-appearance: none;
+  transition: all 240ms ease-out;
+  width: 100%;
 
 }

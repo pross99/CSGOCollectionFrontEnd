@@ -62,7 +62,7 @@ export default{
     <div v-if="isOpen" class="m-overlay" @click.self="close">
         <div class="m-content">
             <button class="m-close" @click="close"> X </button>
-            <slot></slot>
+            
             <div class="m-container">
                 <div class="m-c-img">
                     <img :src="initialData.image" />
@@ -79,8 +79,8 @@ export default{
                             <li v-for="error in errors"> {{ error }}</li>
                         </ul>
                         </p>
-                        <h2>{{ initialData.name }} </h2>
-                        <input v-model="formData.Itemid" type="text">{{ initialData.itemId }}</input>
+                        <h2>{{ initialData.name }} {{ initialData.itemName }} </h2>
+                        
                         
                         <label>
                             User:
@@ -109,7 +109,7 @@ export default{
                         </label>
 
 
-                        <span> StatTrack?:</span> 
+                        <span> StatTrack:</span> 
                         <label class="switch">
                           
                             <input type="checkbox" v-model="formData.statTrack">
@@ -136,7 +136,7 @@ export default{
 
 
 
-                        <button type="submit" class="form-btn-submit"> Save Changes </button>
+                        <button type="submit" class="form-btn-submit">Save</button>
                     </form>
                 </div>
             </div>
@@ -144,4 +144,4 @@ export default{
     </div>
 </template>
 
-<style lang="scss" src="../assets/modal.scss"></style>
+<style lang="scss" src="../assets/modal.scss" scoped></style>

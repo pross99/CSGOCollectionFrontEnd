@@ -6,6 +6,10 @@ $background-color_2: $third-color;
 $background-color_3: $primary-color;
 $background-color_4: #0056b3;
 
+h2{
+	text-align: left;
+}
+
 .m-overlay {
 	position: fixed;
 	z-index: 100;
@@ -20,22 +24,32 @@ $background-color_4: #0056b3;
 }
 
 .m-content {
-	background-color: $background-color_1;
-	padding: 20px;
-	border-radius: 8px;
+	background-color: white;
 	min-width: 300px;
 	position: relative;
-	width: 800px;
+	padding: 0;
+	margin: 0;
+	width: 1000px;
+	  border-radius: $border-radius;
+  background: linear-gradient(-67deg, rgba($secondary-color, .9), rgba(white,.9));
+  overflow: hidden;
 }
 
 .m-close {
 	position: absolute;
-	top: 10px;
-	right: 10px;
+	top: -2px;
+	right: -13px;
+	border: none;
 	font-size: 18px;
-	background-color: $secondary-color;
+	
+	 background: linear-gradient(-67deg, rgba($secondary-color, .9), rgba(white,.9));
 	cursor: pointer;
-	color: $color_1;
+	color: red;
+	 min-width: 46px;
+    min-height: 46px;
+    max-height: 46px;
+  margin-right: 12px;
+
 }
 
 .m-container {
@@ -56,19 +70,26 @@ $background-color_4: #0056b3;
 
 .m-form-c {
 	padding: 0 50px;
-	background-color: $background-color_2;
-	width: 90%;
+	background-color: rgba($third-color, 0.8);
+	width: 70%;
+	height: 100%;
+	border-radius: 20px 20px 0px 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 form {
 	display: flex;
+	height: 100%;
 	flex-direction: column;
 	gap: 10px;
 	margin-top: 15px;
+	width: 100%;
 }
 
 input {
-	width: 90%;
+	width: 70%;
 	padding: 8px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -87,10 +108,12 @@ button[type="submit"] {
 	border: none;
 	cursor: pointer;
 	border-radius: 5px;
-	width: 365px;
+	height: 50px;
+	font-size: 1.5rem;
+	width: 330px;
 
 	&:hover {
-		background-color: $background-color_4;
+		background-color: $secondary-color;
 		scale: 1.01;
 	}
 }
