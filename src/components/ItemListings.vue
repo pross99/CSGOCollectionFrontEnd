@@ -20,14 +20,11 @@ onMounted(() => {
 
 
 const emit = defineEmits(['add']);
-
-const collectionsWithImages = computed(() => store.getters.collectionWithImagefromItem)
 const isLoading = computed(() => store.getters.isLoading);
 
 const updateCollection = (id, newData)  => {
     store.commit('UPDATE_COLLECTION', { id,newData})
 };
-console.log(collectionsWithImages)
 
 const deleteCollection = (id) => {
     store.commit('DELETE_COLLECTION', {id})

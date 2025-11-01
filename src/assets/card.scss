@@ -23,7 +23,7 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-     min-height: 410px;
+     min-height: 88%;
    cursor: pointer;
        padding: 16px 16px;
   background-color: #e2e9f4;
@@ -73,4 +73,9 @@ span{
      span{
           color: red;
      }
+}
+
+#float-value.active {
+
+  color:red
 }

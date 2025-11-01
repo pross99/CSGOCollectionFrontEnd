@@ -4,10 +4,12 @@ import axios from 'axios'
 import { useToast } from 'vue-toastification';
 import { useStore } from 'vuex'
 import Modal from './Modal.vue';
+import floatBar from './floatBar.vue';
 
 const store = useStore()
 const emit = defineEmits(['update'])
 const showModal = ref(false)
+const isHovered = ref(false)
 const showToast = useToast()
 
 
@@ -100,10 +102,12 @@ const handleFormSubmit = async ( formData ) => {
                 {{ collection.itemName }}</p>
                  <p >{{ collection.case }}</p>
             <p>{{ collection.wear }}</p>
-            <p>Float: {{ collection.float }}</p>
-            
+            <p id="float-value" :class="{active: isHovered}">Float: {{ collection.float }}</p>
             <p>{{ collection.rarity }}</p>
             <p>{{ collection.estimatedPrice }}€</p>
+            <p>{{ collection.minFloat }}€</p>
+            <p>{{ collection.maxFloat }}€</p>
+            <floatBar :floats="collection" class="item-float"  @hover="isHovered = $event"/>
            
             
            </div>
@@ -129,4 +133,7 @@ const handleFormSubmit = async ( formData ) => {
 </template>
 
 <style lang="scss" src="../assets/card.scss">
+#float-value.active {
+  background-color: black;
+}
 </style>

@@ -149,7 +149,7 @@ export default createStore({
         collectionWithImagefromItem(state) {
             return state.collections.map(col => {
                 const item = state.items.find(i => String(i.id) === String(col.itemId)) ?? {};
-                return {...col, itemName: item.name ?? 'Unknown', image: item.image ?? null, case: item.crates[0].name}
+                return {...col, itemName: item.name ?? 'Unknown', image: item.image ?? null, case: item.crates[0].name, minFloat: item.min_float ?? 0, maxFloat: item.max_float ?? 1}
             })
         },
         collectionByBool: (state, getters) => (key, value = true) => {
