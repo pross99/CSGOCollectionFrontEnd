@@ -29,15 +29,25 @@ const updateCollection = (id, newData)  => {
 const deleteCollection = (id) => {
     store.commit('DELETE_COLLECTION', {id})
 }
-const peterCollection = computed(() => 
-store.getters.collectionByBool('userName', true)
-);
+const peterCollection = computed(() => {
 
-const vinneCollection = computed(() => 
-store.getters.collectionByBool('userName', false))
+const items = store.getters.collectionByBool('userName', true)
+return Object.values(items).sort((a,b) => b.estimatedPrice - a.estimatedPrice)
+});
+
+const vinneCollection = computed(() => {
+
+
+const items = store.getters.collectionByBool('userName', false)
+return Object.values(items).sort((a,b) => b.estimatedPrice - a.estimatedPrice)
+})
+
 
 const statisticsPeter = computed(() => store.getters.collectionsStats(peterCollection))
 const statisticsVinne = computed(() => store.getters.collectionsStats(vinneCollection))
+
+
+
 </script>
 
 <template>

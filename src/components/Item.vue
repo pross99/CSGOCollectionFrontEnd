@@ -105,8 +105,6 @@ const handleFormSubmit = async ( formData ) => {
             <p id="float-value" :class="{active: isHovered}">Float: {{ collection.float }}</p>
             <p>{{ collection.rarity }}</p>
             <p>{{ collection.estimatedPrice }}€</p>
-            <p>{{ collection.minFloat }}€</p>
-            <p>{{ collection.maxFloat }}€</p>
             <floatBar :floats="collection" class="item-float"  @hover="isHovered = $event"/>
            
             
