@@ -51,6 +51,7 @@
 
 .title-container{
     width: 100%;
+    
 }
 
 .il-spinner {
@@ -77,8 +78,8 @@
 
 .il-title{
   background: linear-gradient(-67deg, rgba($secondary-color, .4), rgba($third-color,.9));
-    color: #1a1a1a;;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    color: white;
+    text-shadow: 0 1px 3px rgba($third-color, 0.5);
    
 }
 
