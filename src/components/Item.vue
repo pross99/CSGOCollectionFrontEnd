@@ -98,8 +98,11 @@ const handleFormSubmit = async ( formData ) => {
                  <img :src="collection.image" />
                  
              <p id="item-name">
-                <span>{{ collection.statTrack ? 'StatTrack' : '' }}</span>
-                {{ collection.itemName }}</p>
+                
+                {{ collection.itemName && collection.statTrack ? `StatTrack ${collection.itemName}` : `${collection.itemName}` }}
+                
+            </p>
+
                  <p >{{ collection.case }}</p>
             <p>{{ collection.wear }}</p>
             <p id="float-value" :class="{active: isHovered}">Float: {{ collection.float }}</p>

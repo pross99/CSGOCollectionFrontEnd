@@ -1,5 +1,5 @@
 .item-card{
-   padding: 1px;
+   padding: 0.6rem;
    padding-bottom: 0;
    box-sizing: border-box;
   border-radius: $border-radius;
@@ -23,11 +23,11 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-     min-height: 90%;
+     min-height: 95%;
    cursor: pointer;
-       padding: 16px 16px;
-  background-color: #e2e9f4;
-  border-radius: var($border-radius);
+       
+  background-color: white;
+  border-radius: $border-radius;
    
 }
 
@@ -57,6 +57,7 @@ p{
 
 span{
      color: red;
+     font-size: 0.5rem;
 }
 
 .card-delete{
