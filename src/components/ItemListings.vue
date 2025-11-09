@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUpdated, computed } from 'vue';
+import { ref, onMounted, onUpdated, computed, watch } from 'vue';
 import { RouterLink } from 'vue-router';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import axios from 'axios';
@@ -11,11 +11,24 @@ import Statistics from './Statistics.vue';
 
 const store = useStore()
 
-onMounted(() => {
+onMounted(async() => {
     if (!store.state.collections || store.state.collections.length === 0) {
-    store.dispatch('getCollections')
+     await store.dispatch('getCollections')
+     await fetchAllPrices()
   }
 })
+
+// get price if new item is added from modal component
+watch(
+    () => store.state.collections.length,
+    async (newLength, oldLength) => {
+        // Only fetch prices when new items are added
+        if (newLength > oldLength) {
+            console.log('New collection added, fetching prices...')
+            await fetchAllPrices()
+        }
+    }
+)
 
 
 
@@ -47,7 +60,20 @@ const statisticsPeter = computed(() => store.getters.collectionsStats(peterColle
 const statisticsVinne = computed(() => store.getters.collectionsStats(vinneCollection))
 
 
-
+const fetchAllPrices = async () => {
+    const collections = store.state.collections
+    
+    for (const collection of collections) {
+        // Get the full collection data with item details
+        const fullCollection = store.getters.collectionWithImagefromItem.find(
+            c => c._id === collection._id
+        )
+        
+        if (fullCollection && fullCollection.itemName !== 'Unknown') {
+            await store.dispatch('priceFromExternalAPI', fullCollection)
+        }
+    }
+}
 </script>
 
 <template>

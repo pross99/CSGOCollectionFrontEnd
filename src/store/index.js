@@ -7,7 +7,8 @@ export default createStore({
         collections: [],
         isLoading: true,
         searchLoading: false,
-        searchResults: []
+        searchResults: [],
+        price: null
     },
     mutations: {
         SET_COLLECTIONS(state, collections) {
@@ -46,6 +47,12 @@ export default createStore({
         CLEAR_SEARCH_RESULTS(state) {
             state.searchResults = {data: []}
         },
+        SET_PRICE(state,price) {
+            state.price = price
+        },
+        UPDATE_COLLECTION_PRICE(state, {collectionIndex, estimatedPrice}) {
+            state.collections[collectionIndex].estimatedPrice = estimatedPrice
+        }
     },
 
     actions: {
@@ -67,6 +74,66 @@ export default createStore({
                 commit('SET_LOADING', false)
             }
         },
+
+        async priceFromExternalAPI({commit,state}, collection) {
+           try {
+        let collectionNameAdjustforAPi = collection.wear
+        const checkStatTrack = collection.statTrack
+
+        // Normalize wear for API naming
+        if (
+          collection.wear === 'Field Tested' ||
+          collection.wear === 'Well Worn' ||
+          collection.wear === 'Battle Scarred'
+        ) {
+          collectionNameAdjustforAPi = collection.wear.trim().replace(/\s+/g, '-')
+        }
+
+         if (checkStatTrack) {
+          collection.itemName = `StatTrak™ ${collection.itemName}`
+        }
+
+        // Fetch from external API
+        const priceApiResponse = await axios.get('https://skin.broker/api/v1/item', {
+          params: {
+            key: import.meta.env.VITE_API,
+            marketHashName: `${collection.itemName} (${collectionNameAdjustforAPi})`
+          }
+        })
+
+
+         const fetchedPrice =
+          priceApiResponse.data?.price?.skinport?.original?.price || 0
+
+        // Update store state
+        commit('SET_PRICE', fetchedPrice)
+
+        // Optionally update that specific collection’s estimated price
+        const collectionIndex = state.collections.findIndex(
+          (c) => c._id === collection._id
+        )
+        if (collectionIndex !== -1) {
+          commit('UPDATE_COLLECTION_PRICE', {
+            collectionIndex,
+            estimatedPrice: fetchedPrice
+          })
+
+          await axios.put(
+                `https://csgocollectionbackend.onrender.com/api/collection/${collection._id}`,
+                {
+                    ...state.collections[collectionIndex],
+                    estimatedPrice: fetchedPrice
+                }
+            )
+        }
+
+        return fetchedPrice
+      } catch (error) {
+        console.error('Error fetching price:', error.message)
+        commit('SET_PRICE', 'Error')
+        return null
+        }
+    },
 
 
         async searchItem({commit}, query) {
@@ -199,7 +266,8 @@ export default createStore({
         });
         console.log("stats!", stats)
         return stats
-    }
+    },
+    
 
  
     },        

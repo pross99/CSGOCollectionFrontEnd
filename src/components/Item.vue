@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref, computed, defineEmits } from 'vue';
+import { defineProps, ref, computed, defineEmits, onMounted } from 'vue';
 import axios from 'axios'
 import { useToast } from 'vue-toastification';
 import { useStore } from 'vuex'
@@ -12,16 +12,19 @@ const showModal = ref(false)
 const isHovered = ref(false)
 const showToast = useToast()
 
-
 const props = defineProps({
     collection: Object
 });
+
 
 
 //iterate each object
 const sortedCollections = computed(() => {
   return [...props.collection].sort((a, b) => a.estimatedPrice - b.estimatedPrice)
 })
+
+
+
 
 
 const handleFormSubmit = async ( formData ) => {
@@ -105,6 +108,7 @@ const handleFormSubmit = async ( formData ) => {
             <p id="float-value" :class="{active: isHovered}">Float: {{ collection.float }}</p>
             <p>{{ collection.rarity }}</p>
             <p>{{ collection.estimatedPrice }}€</p>
+            
             <floatBar :floats="collection" class="item-float"  @hover="isHovered = $event"/>
            
             

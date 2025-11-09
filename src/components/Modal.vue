@@ -127,15 +127,6 @@ export default{
                                 <option label="EXTRAORDINARY" value="Extraordinary"></option>
                             </select>
                         </label>
-
-                        <label>
-                            Estimated Price:
-                            <input type="number" v-model="formData.estimatedPrice"
-                                :placeholder="initialData.estimatedPrice || '1€'"></input>
-                        </label>
-
-
-
                         <button type="submit" class="form-btn-submit">Save</button>
                     </form>
                 </div>
