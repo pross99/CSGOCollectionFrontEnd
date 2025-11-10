@@ -1,11 +1,11 @@
 
 .il-top-container {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    padding: 20px 0;
+    gap: 1rem;
 }
 
 .top-bottom{
@@ -17,12 +17,9 @@
 
 
 .il {
-    margin-top: 1rem;
-    padding: 1rem;
+    padding: 2rem;
     box-sizing: border-box;
-	background: linear-gradient(-67deg, rgba($secondary-color,.9), rgba($third-color,.8));
 	width: 90%;
-	border-radius: 20px;
     height: auto;
     width: 100vw;
     display: flex;

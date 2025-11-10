@@ -1,6 +1,6 @@
 .item-card{
+     position: relative;
    padding: 0.6rem;
-   padding-bottom: 0;
    box-sizing: border-box;
   border-radius: $border-radius;
   background: linear-gradient(-67deg, rgba($secondary-color, .7), $third-color);
@@ -23,18 +23,23 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-     min-height: 95%;
    cursor: pointer;
-       
   background-color: white;
   border-radius: $border-radius;
+  min-height: 100%;
    
 }
 
 .card-icon {
-     background-color: white;
+    position: absolute;
+    top: 95%;
+     background: linear-gradient(-67deg, rgba(223, 124, 19, 1), rgba(93, 121, 174, 1));
+     color: white;
+     border-radius: 1rem;
      padding: 10px;
    cursor: pointer;
+
+    
 }
 
 .item-blue{
@@ -67,6 +72,10 @@ span{
      justify-content: center;
      align-items: center;
      color: $primary-color;
+
+      :hover{
+          color: red;
+     }
 }
 
 #item-name{
