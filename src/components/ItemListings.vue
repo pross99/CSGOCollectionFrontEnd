@@ -142,6 +142,31 @@ const setActiveUser = (userName) => {
     <section class="il">
         
 
+
+        
+        <div class="il-container">
+
+            <h2 class="il-title" id="vinne"> Stats</h2>
+            <div v-if="isLoading" class="il-spinner">
+                <h1> Server is cold starting...</h1>
+                <PulseLoader />
+            </div>
+            <div v-else class="il-items il-stats">
+                <div class="stats-item">
+                     <h2 class=""> Pede</h2>
+                <Statistics :collection="statisticsPeter" />
+                </div>
+               <div class="stats-item">
+                    <h2 class="il-title"> Vinne</h2>
+                <Statistics :collection="statisticsVinne" />
+                </div>
+                <div class="stats-item">
+                    <h2 class="il-title"> Bims</h2>
+                <Statistics :collection="statisticsBims" />
+                </div>
+                
+            </div>
+            </div>
         
         <div class="il-container">
             <div class="title-container">
@@ -160,17 +185,6 @@ const setActiveUser = (userName) => {
         
 
 
-        <div class="il-container">
-
-            <h2 class="il-title" id="vinne"> Vinne</h2>
-            <div v-if="isLoading" class="il-spinner">
-                <h1> Server is cold starting...</h1>
-                <PulseLoader />
-            </div>
-            <div v-else class="il-items">
-                <Item  v-for="col in vinneCollection"  :key="col.id" :collection="col" @update="updateCollection"  @delete="deleteCollection"/>
-            </div>
-            </div>
            
     </section>
 </template>

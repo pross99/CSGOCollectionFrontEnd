@@ -51,7 +51,7 @@ const isLoading = computed(() => store.getters.isLoading);
 <style scoped>
 
 .card {
-  width: 50vw;
+  width: 100%
 }
 .results{
     display: flex;
