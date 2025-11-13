@@ -47,7 +47,7 @@
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-inner-content"  v-show="openIndex === 1">
-                    <span> This hobby project is built with free tools, meaning the backend has to cold-start if no request have been recived recently.</span>
+                    <span> This hobby project is built with free tools, meaning the backend has to cold-start if no requests have been recived recently.</span>
                     </div>
                 </div>
             </div>

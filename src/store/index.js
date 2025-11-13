@@ -219,8 +219,8 @@ export default createStore({
                 return {...col, itemName: item.name ?? 'Unknown', image: item.image ?? null, case: item.crates[0].name, minFloat: item.min_float ?? 0, maxFloat: item.max_float ?? 1}
             })
         },
-        collectionByBool: (state, getters) => (key, value = true) => {
-         return getters.collectionWithImagefromItem.filter(col => col[key] === value);
+        collectionByString: (state, getters) => (key, value = '') => {
+         return getters.collectionWithImagefromItem.filter(col => String(col[key]) === String(value));
     },
         collectionsStats: (state) => (collection) => {
 

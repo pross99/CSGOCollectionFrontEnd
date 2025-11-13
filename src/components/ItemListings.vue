@@ -10,6 +10,7 @@ import Search from './Search.vue';
 import Statistics from './Statistics.vue';
 
 const store = useStore()
+const activeUser = ref('Pede')
 
 onMounted(async() => {
     if (!store.state.collections || store.state.collections.length === 0) {
@@ -44,20 +45,49 @@ const deleteCollection = (id) => {
 }
 const peterCollection = computed(() => {
 
-const items = store.getters.collectionByBool('userName', true)
+const items = store.getters.collectionByString('userName', 'Pede')
 return Object.values(items).sort((a,b) => b.estimatedPrice - a.estimatedPrice)
 });
 
 const vinneCollection = computed(() => {
-
-
-const items = store.getters.collectionByBool('userName', false)
+const items = store.getters.collectionByString('userName', 'Vinne')
+return Object.values(items).sort((a,b) => b.estimatedPrice - a.estimatedPrice)
+})
+const bimsCollection = computed(() => {
+const items = store.getters.collectionByString('userName', 'Bims')
 return Object.values(items).sort((a,b) => b.estimatedPrice - a.estimatedPrice)
 })
 
 
 const statisticsPeter = computed(() => store.getters.collectionsStats(peterCollection))
 const statisticsVinne = computed(() => store.getters.collectionsStats(vinneCollection))
+const statisticsBims = computed(() => store.getters.collectionsStats(bimsCollection))
+
+const activeCollection = computed(() => {
+    switch(activeUser.value) {
+        case 'Pede':
+            return peterCollection.value
+        case 'Vinne':
+            return vinneCollection.value
+        case 'Bims':
+            return bimsCollection.value
+        default:
+        return []
+    }
+})
+
+const activeStatistics = computed(() => {
+      switch(activeUser.value) {
+        case 'Pede':
+            return store.getters.collectionsStats(peterCollection)
+        case 'Vinne':
+            return store.getters.collectionsStats(vinneCollection)
+        case 'Bims':
+            return store.getters.collectionsStats(bimsCollection)
+        default:
+            return null
+    }
+})
 
 
 const fetchAllPrices = async () => {
@@ -74,6 +104,10 @@ const fetchAllPrices = async () => {
         }
     }
 }
+
+const setActiveUser = (userName) => {
+    activeUser.value = userName
+}
 </script>
 
 <template>
@@ -82,9 +116,27 @@ const fetchAllPrices = async () => {
             <Search/>
         </div>
         <div class="top-bottom">
-            <Statistics :collection="statisticsPeter"/>
-            
-            <Statistics :collection="statisticsVinne"/>
+          <button 
+                @click="setActiveUser('Pede')" 
+                :class="{ active: activeUser === 'Pede' }"
+                class="user-toggle-btn"
+            >
+                Pede
+            </button>
+            <button 
+                @click="setActiveUser('Vinne')" 
+                :class="{ active: activeUser === 'Vinne' }"
+                class="user-toggle-btn"
+            >
+                Vinne
+            </button>
+            <button 
+                @click="setActiveUser('Bims')" 
+                :class="{ active: activeUser === 'Bims' }"
+                class="user-toggle-btn"
+            >
+                Bims
+            </button>
             </div>
         </div>
     <section class="il">
@@ -93,7 +145,7 @@ const fetchAllPrices = async () => {
         
         <div class="il-container">
             <div class="title-container">
-                <h2 class="il-title"> Pede</h2>
+                <h2 class="il-title"> {{activeUser}}</h2>
             </div>
                
             <div v-if="isLoading" class="il-spinner">
@@ -102,7 +154,7 @@ const fetchAllPrices = async () => {
             </div>
 
             <div v-else class="il-items">
-                <Item v-for="col in peterCollection"  :key="col.id" :collection="col" @update="updateCollection" @delete="deleteCollection"/>
+                <Item v-for="col in activeCollection"  :key="col.id" :collection="col" @update="updateCollection" @delete="deleteCollection"/>
             </div>
              </div>
         

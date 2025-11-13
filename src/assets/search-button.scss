@@ -6,7 +6,7 @@ $border-radius: 10px;
   background: linear-gradient(-67deg, rgba(#c8d8e7, .7), rgba(255,255,255,.8));
   overflow: hidden;
   box-shadow: 
-    -2px -2px 6px rgba($secondary-color, .6),
+    -2px -2px 6px rgba($third-color, .6),
     2px 2px 12px #c8d8e7;
   width: 20vw;
 }
@@ -144,4 +144,9 @@ input{
 
 .results{
   background-color: white;
+}
+
+.loading{
+  padding: 8px;
+  color: white;
 }
