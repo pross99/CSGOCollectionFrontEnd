@@ -85,8 +85,9 @@ export default{
                         <label>
                             User:
                             <select v-model="formData.userName">
-                                <option :value=true>Pede</option>
-                                <option :value=false>Vinne</option>
+                                <option value="Pede">Pede</option>
+                                <option value="Vinne">Vinne</option>
+                                <option value="Bims">Bims</option>
                             </select>
                         </label>
 

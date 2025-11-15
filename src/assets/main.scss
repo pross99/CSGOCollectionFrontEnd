@@ -1,20 +1,18 @@
 
-.il-top-container {
+
+
+.top{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
-    gap: 1rem;
-}
+    gap: 2rem;
+    height: 300px;
 
-.top-bottom{
-    display: flex;
-    justify-content: space-evenly;
-    width: 99vw;
-    gap: 20px;
+    button{
+        height: 50px;
+        width: 100px;
+    }
 }
-
 
 .il {
     padding: 2rem;
@@ -60,12 +58,13 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
     gap: 2rem;
-    padding: 1rem;
+    padding: 0.5rem;
     height: 1200px;
     overflow: scroll;
     scrollbar-color: $primary-color transparent;
     scrollbar-width: thin;
     border-radius: $border-radius;
+    background-color: rgba(231,231,231, 1);
     
 }
 
@@ -98,6 +97,7 @@
     justify-content: center;
     align-items: center;
    padding: 1rem;
+   box-sizing: border-box;
 }
 
 #vinne{
@@ -132,4 +132,26 @@
     background-color: #007bff;
     color: white;
     border-color: $third-color;
+}
+
+.stats-item{
+    background: white;
+    border-radius: 1rem;
+    order: 2;
+    background: linear-gradient(-67deg, rgba(223, 124, 19, 0.4), rgba(93, 121, 174, 0.9));
+  color: white;
+  text-shadow: 0 1px 3px rgba(93, 121, 174, 0.5);
+  box-shadow: 0 1px 3px rgba(93, 121, 174, 0.5);;
+
+  h2{
+    color: white;
+  }
+}
+
+.stats-item.active{
+    order: 1;
+
+    h2{
+        font-size: 48px;
+    }
 }

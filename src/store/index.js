@@ -176,6 +176,7 @@ export default createStore({
                   estimatedPrice: formData.estimatedPrice
             }
             const response = await axios.put(`https://csgocollectionbackend.onrender.com/api/collection/${formData.id}`, updateCollectionObject)
+            console.log(response)
             commit('UPDATE_COLLECTION', {id: formData.id, newData: response.data})
             return response.data
         },
@@ -216,7 +217,13 @@ export default createStore({
         collectionWithImagefromItem(state) {
             return state.collections.map(col => {
                 const item = state.items.find(i => String(i.id) === String(col.itemId)) ?? {};
-                return {...col, itemName: item.name ?? 'Unknown', image: item.image ?? null, case: item.crates[0].name, minFloat: item.min_float ?? 0, maxFloat: item.max_float ?? 1}
+                return {
+                    ...col,
+                    itemName: item.name ?? 'Unknown',
+                    image: item.image ?? null,
+                    case: item.crates?.[0]?.name ?? item.collections?.[0]?.name, 
+                    minFloat: item.min_float ?? 0,
+                    maxFloat: item.max_float ?? 1}
             })
         },
         collectionByString: (state, getters) => (key, value = '') => {

@@ -111,11 +111,9 @@ const setActiveUser = (userName) => {
 </script>
 
 <template>
-    <div class="il-top-container">
-        <div class="top-top">
-            <Search/>
-        </div>
-        <div class="top-bottom">
+    <div class="il">
+       
+        <div class="il-container top">
           <button 
                 @click="setActiveUser('Pede')" 
                 :class="{ active: activeUser === 'Pede' }"
@@ -138,6 +136,10 @@ const setActiveUser = (userName) => {
                 Bims
             </button>
             </div>
+
+             <div class="il-container top">
+            <Search/>
+        </div>
         </div>
     <section class="il">
         
@@ -146,22 +148,30 @@ const setActiveUser = (userName) => {
         
         <div class="il-container">
 
-            <h2 class="il-title" id="vinne"> Stats</h2>
+            <h2 class="il-title" id="vinne"> Leaderboard</h2>
             <div v-if="isLoading" class="il-spinner">
                 <h1> Server is cold starting...</h1>
                 <PulseLoader />
             </div>
             <div v-else class="il-items il-stats">
-                <div class="stats-item">
+                <div class="stats-item"
+                 :class="{ active: activeUser === 'Pede' }"
+                
+                >
                      <h2 class=""> Pede</h2>
                 <Statistics :collection="statisticsPeter" />
                 </div>
-               <div class="stats-item">
-                    <h2 class="il-title"> Vinne</h2>
+
+               <div class="stats-item"
+                :class="{ active: activeUser === 'Vinne' }"
+               >
+                    <h2 class=""> Vinne</h2>
                 <Statistics :collection="statisticsVinne" />
                 </div>
-                <div class="stats-item">
-                    <h2 class="il-title"> Bims</h2>
+                <div class="stats-item"
+                 :class="{ active: activeUser === 'Bims' }"
+                >
+                    <h2 class=""> Bims</h2>
                 <Statistics :collection="statisticsBims" />
                 </div>
                 
